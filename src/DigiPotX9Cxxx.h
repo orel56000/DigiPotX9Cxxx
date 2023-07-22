@@ -18,8 +18,8 @@ class DigiPot
 {
  public:
   DigiPot();
-  DigiPot(uint8_t incPin, uint8_t udPin, uint8_t csPin);
-  void setup(uint8_t incPin, uint8_t udPin, uint8_t csPin);
+  DigiPot(uint8_t incPin, uint8_t udPin);
+  void setup(uint8_t incPin, uint8_t udPin);
   void increase(uint8_t amount);
   void decrease(uint8_t amount);
   void change(uint8_t direction, uint8_t amount);
@@ -30,7 +30,6 @@ class DigiPot
  private:
   uint8_t _incPin;
   uint8_t _udPin;
-  uint8_t _csPin;
   uint8_t _currentValue;
 };
 

@@ -9,28 +9,22 @@
 
 DigiPot::DigiPot() {}
 
-void DigiPot::setup(uint8_t incPin, uint8_t udPin, uint8_t csPin) {
+void DigiPot::setup(uint8_t incPin, uint8_t udPin) {
   _incPin = incPin;
   _udPin = udPin;
-  _csPin = csPin;  
   _currentValue = DIGIPOT_UNKNOWN;
 
   pinMode(_incPin, OUTPUT);
   pinMode(_udPin, OUTPUT);
-  pinMode(_csPin, OUTPUT);
-  digitalWrite(_csPin, HIGH);
 }
 
-DigiPot::DigiPot(uint8_t incPin, uint8_t udPin, uint8_t csPin) {
+DigiPot::DigiPot(uint8_t incPin, uint8_t udPin) {
   _incPin = incPin;
   _udPin = udPin;
-  _csPin = csPin;  
   _currentValue = DIGIPOT_UNKNOWN;
 
   pinMode(_incPin, OUTPUT);
   pinMode(_udPin, OUTPUT);
-  pinMode(_csPin, OUTPUT);
-  digitalWrite(_csPin, HIGH);
 
 }
 
@@ -67,8 +61,8 @@ void DigiPot::decrease(uint8_t amount) {
 void DigiPot::change(uint8_t direction, uint8_t amount) {
   amount = constrain(amount, 0, DIGIPOT_MAX_AMOUNT);
   digitalWrite(_udPin, direction);
+  digitalWrite(_incPin, LOW);
   digitalWrite(_incPin, HIGH);
-  digitalWrite(_csPin, LOW);
 
   for (uint8_t i=0; i<amount; i++) {
     digitalWrite(_incPin, LOW);
@@ -81,6 +75,5 @@ void DigiPot::change(uint8_t direction, uint8_t amount) {
     }
     
   }
-  digitalWrite(_csPin, HIGH);
 }
 
